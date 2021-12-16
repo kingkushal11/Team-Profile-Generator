@@ -4,6 +4,7 @@ const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
 const inquirer = require('inquirer');
 const employeeList = []
+const fs = require('fs');
 
 function chooseEmployees() {
     inquirer.prompt([{
@@ -29,22 +30,68 @@ function chooseEmployees() {
 
     })
 }
-function addEngineer() {
+function addManager() {
     inquirer.prompt([{
         type: 'input',
-        message: 'What is the employee name?',
+        message: 'What is the manager name?',
         name: 'name'
     },{
         type: 'input',
-        message: 'What is the employee id?',
+        message: 'What is the manager id?',
         name: 'id'
     },{
         type: 'input',
-        message: 'What is the employee email?',
+        message: 'What is the manager email?',
         name: 'email'
     },{
         type: 'input',
-        message: 'What is the employee github?',
+        message: 'What is the manager office number?',
+        name: 'school'
+    }]).then(function(result){
+        const manager = new Manager(data.name, data.id, data.email, data.officeNumber)
+        employeeList.push(engineer)
+        chooseEmployees()
+    })
+ }
+function addIntern() {
+    inquirer.prompt([{
+        type: 'input',
+        message: 'What is the intern name?',
+        name: 'name'
+    },{
+        type: 'input',
+        message: 'What is the intern id?',
+        name: 'id'
+    },{
+        type: 'input',
+        message: 'What is the intern email?',
+        name: 'email'
+    },{
+        type: 'input',
+        message: 'What school did the intern go to?',
+        name: 'school'
+    }]).then(function(result){
+        const intern = new Intern(data.name, data.id, data.email, data.school)
+        employeeList.push(engineer)
+        chooseEmployees()
+    })
+ }
+ function addEngineer() {
+    inquirer.prompt([{
+        type: 'input',
+        message: 'What is the engineer name?',
+        name: 'name'
+    },{
+        type: 'input',
+        message: 'What is the engineer id?',
+        name: 'id'
+    },{
+        type: 'input',
+        message: 'What is the engineer email?',
+        name: 'email'
+    },{
+        type: 'input',
+        message: 'What is the engineer github?',
         name: 'github'
     }]).then(function(result){
         const engineer = new Engineer(data.name, data.id, data.email, data.github)
@@ -52,7 +99,6 @@ function addEngineer() {
         chooseEmployees()
     })
  }
-function addIntern() { }
-function addManager() { }
+
 function quit() {}
 chooseEmployees()
