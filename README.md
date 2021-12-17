@@ -22,3 +22,6 @@ Node.index.js
 ## Questions
 - GitHub Profile Page:(https://github.com/Kingkushal11).
 - Any other question contact: Kushalcool06@gmail.com
+## Deployed links
+- https://github.com/kingkushal11/Team-Profile-Generator
+- https://kingkushal11.github.io/Team-Profile-Generator/
