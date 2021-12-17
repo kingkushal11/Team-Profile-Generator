@@ -4,6 +4,7 @@ const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
 const inquirer = require('inquirer');
 const employeeList = []
+const generateHTML = require('./src/generateHTML')
 const fs = require('fs');
 
 function chooseEmployees() {
@@ -47,7 +48,7 @@ function addManager() {
         type: 'input',
         message: 'What is the manager office number?',
         name: 'school'
-    }]).then(function(result){
+    }]).then(function(data){
         const manager = new Manager(data.name, data.id, data.email, data.officeNumber)
         employeeList.push(engineer)
         chooseEmployees()
@@ -70,7 +71,7 @@ function addIntern() {
         type: 'input',
         message: 'What school did the intern go to?',
         name: 'school'
-    }]).then(function(result){
+    }]).then(function(data){
         const intern = new Intern(data.name, data.id, data.email, data.school)
         employeeList.push(engineer)
         chooseEmployees()
@@ -93,12 +94,22 @@ function addIntern() {
         type: 'input',
         message: 'What is the engineer github?',
         name: 'github'
-    }]).then(function(result){
+    }]).then(function(data){
         const engineer = new Engineer(data.name, data.id, data.email, data.github)
         employeeList.push(engineer)
         chooseEmployees()
     })
  }
+ 
+ function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, function(err){
+        if(err) throw err 
+        console.log('file written');
+    })
+}
 
-function quit() {}
+function quit() {
+    var stringfydata = generateHTML()
+    writeToFile("employee.html", stringfydata)
+}
 chooseEmployees()
