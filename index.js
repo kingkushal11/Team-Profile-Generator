@@ -47,10 +47,10 @@ function addManager() {
     },{
         type: 'input',
         message: 'What is the manager office number?',
-        name: 'school'
+        name: 'officeNumber'
     }]).then(function(data){
         const manager = new Manager(data.name, data.id, data.email, data.officeNumber)
-        employeeList.push(engineer)
+        employeeList.push(manager)
         chooseEmployees()
     })
  }
@@ -73,7 +73,7 @@ function addIntern() {
         name: 'school'
     }]).then(function(data){
         const intern = new Intern(data.name, data.id, data.email, data.school)
-        employeeList.push(engineer)
+        employeeList.push(intern)
         chooseEmployees()
     })
  }
@@ -109,7 +109,8 @@ function addIntern() {
 }
 
 function quit() {
-    var stringfydata = generateHTML()
-    writeToFile("employee.html", stringfydata)
+    console.log(employeeList)
+    var stringfydata = generateHTML(employeeList)
+    writeToFile("./dist/employee.html", stringfydata)
 }
 chooseEmployees()
